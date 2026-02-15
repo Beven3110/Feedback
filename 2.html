@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Please Rate Our Service</title>
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #0a1f44; /* dark blue */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card {
+        background: white;
+        padding: 40px 50px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+        max-width: 420px;
+        width: 90%;
+        position: relative;
+    }
+
+    h1 {
+        color: #0a1f44;
+        margin-bottom: 25px;
+    }
+
+    .stars {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        cursor: pointer;
+    }
+
+    .star {
+        font-size: 40px;
+        color: #ccc;
+        transition: color 0.2s;
+    }
+
+    .star:hover,
+    .star.hovered,
+    .star.selected {
+        color: #f4c430; /* yellow */
+    }
+
+    .thank-you {
+        margin-top: 25px;
+        color: #0a1f44;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    /* Pretty overlay */
+    .overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        background: #ffffff; /* solid white */
+        padding: 30px 25px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        display: none;
+        z-index: 10;
+        animation: fadeIn 0.3s ease forwards;
+    }
+
+    .overlay p {
+        color: #0a1f44;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0 0 20px 0;
+        font-weight: 500;
+    }
+
+    .overlay button {
+        padding: 12px 28px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        background: #f4c430;
+        color: #0a1f44;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background 0.2s;
+    }
+
+    .overlay button:hover {
+        background: #e5b800;
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0; transform: translate(-50%, -45%);}
+        to {opacity: 1; transform: translate(-50%, -50%);}
+    }
+</style>
+</head>
+<body>
+
+<div class="card">
+    <h1>Please rate our service</h1>
+
+    <div class="stars">
+        <span class="star" data-value="1">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="5">&#9733;</span>
+    </div>
+
+    <div class="thank-you">
+        Thank you for your feedback
+    </div>
+
+<!-- Overlay -->
+<!-- Overlay -->
+<div class="overlay" id="overlay">
+    <p style="font-size: 24px; font-weight: bold;">Wowww🤩</p>
+    <!-- Cartoon happy jump GIF -->
+    <div class="tenor-gif-embed" 
+    data-postid="10450862751152685702" 
+    data-share-method="host" 
+    data-aspect-ratio="2"   
+    data-width="50">       <!-- Set desired width in px or % -->
+ <a href="https://tenor.com/view/quby-gif-10450862751152685702">Quby Sticker</a>
+ from <a href="https://tenor.com/search/quby-stickers">Quby Stickers</a>
+</div>
+<script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+
+
+    <p>Thank you for the amazing rating. We would be so grateful if you could leave us a review on Google as well. It would mean the world to our team. Thanks☺️❤️</p>
+    <button id="googleButton">Rate on Google</button>
+</div>
+
+
+<script>
+const stars = document.querySelectorAll('.star');
+const overlay = document.getElementById('overlay');
+const googleButton = document.getElementById('googleButton');
+
+stars.forEach(star => {
+    star.addEventListener('mouseover', () => {
+        const value = star.getAttribute('data-value');
+        highlightStars(value);
+    });
+
+    star.addEventListener('mouseout', () => {
+        clearHover();
+    });
+
+    star.addEventListener('click', () => {
+        const rating = parseInt(star.getAttribute('data-value'));
+        highlightSelected(rating);
+
+        if (rating <= 3) {
+            // Redirect immediately for low ratings
+            setTimeout(() => {
+                window.location.href = "https://forms.gle/CDJhUVh6AoRuaLWp9";
+            }, 600);
+        } else {
+            // Show overlay for 4-5 stars
+            overlay.style.display = "block";
+        }
+    });
+});
+
+googleButton.addEventListener('click', () => {
+    window.location.href = "https://www.google.com/search?sca_esv=4e07353132a138ee&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-EzE3N3bE8ls7o_lbYovYQM-pghpinlcvDq90Y2QdsOJz87LW8qm0vv-orW8f6T8Shg4UmUWBWdkMcHZ7uZeP2ih8dY11-o1PBo8_BbROa1rqZjIX0Q%3D%3D&q=Caf%C3%A9+63+Riverlink+Reviews&sa=X&ved=2ahUKEwj6lv-Tmu-RAxX84TgGHQbDOvIQ0bkNegQIOBAE&biw=1440&bih=812&dpr=2#lrd=0x6b96b52bfa788645:0x83cc0d7e2403ed39,3,,,,";
+});
+
+function highlightStars(value) {
+    stars.forEach(star => {
+        star.classList.toggle(
+            'hovered',
+            star.getAttribute('data-value') <= value
+        );
+    });
+}
+
+function clearHover() {
+    stars.forEach(star => star.classList.remove('hovered'));
+}
+
+function highlightSelected(value) {
+    stars.forEach(star => {
+        star.classList.toggle(
+            'selected',
+            star.getAttribute('data-value') <= value
+        );
+    });
+}
+</script>
+
+</body>
+</html>
